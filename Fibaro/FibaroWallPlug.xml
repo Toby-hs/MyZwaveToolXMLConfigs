@@ -1,0 +1,218 @@
+<xml version='1.0' encoding="UTF-8">
+<Device name="Fibaro Wallplug"  url="https://manuals.fibaro.com/content/manuals/en/FGWPEF-102/FGWPEF-102-EN-A-v2.1.pdf" Manufacturer='0x10F' ProductType='0x602' ProductID='0x1001' version="3.2">
+  <Groups>
+    <Group ID='0' default='open'>Basic functionalities</Group>
+    <Group ID='10' default='open'>POWER AND ENERGY MEASUREMEN</Group>
+    <Group ID='20' default='closed'>„ON/OFF” ASSOCIATION GROUP</Group>
+    <Group ID='30' default='closed'>alarms</Group>
+    <Group ID='40' default='closed'>Colour Setting</Group>
+    <Group ID='50' default='closed'>Other</Group>
+ </Groups>
+
+<Parameters>
+<Parameter name="1" group="0" access="rw" type="radio">
+<Setting values="0,1" default="0" size="1" />
+<Title> “Always On” mode</Title>
+<Description>In this mode Wall Plug will turn on connected device permanently and will stop reacting to attempts of turning it off (through Z-Wave network or pushing the B-button).“Always On” function turns the Wall Plug into a power and energy me-ter. Connected device will not be turned off upon receiving an alarm frame from another Z-Wave device (parameter 31 will be ignored).In  “Always  on”  mode,  connected  device  may  be  turned  off  after  ex-ceeding  the  power  defined  in  parameter  3  or  in  case  of  detecting  current greater than 110% of rated current. In such cases, connected device can be turned on again by pushing the B-button or sending a control frame. By default, overload protection is inactive.
+0 - function inactive
+1 - function activated</Description>
+</Parameter>
+<Parameter name="2" group="0" access="rw" type="radio">
+<Setting values="0,1" default="1" size="1" />
+<Title>Remember device status before the power failur</Title>
+<Description>This parameter determines how the Wall Plug will react in the event of  power  supply  failure  (e.g.  power  outage  or  taking  out  from  the  electrical outlet). After  the  power  supply  is  back  on,  the  Wall  Plug  can  be  restored  to  previous state or remain switched off. This parameter is ignored in „Always On” mode - the device automat-ically turns On after plugging it into the socket
+0 - device remains switched off
+1  -  device  restores  the  state  from  before  the  power failure</Description>
+</Parameter>
+<Parameter name="3" group="0" access="rw" type="range+">
+<Setting  values="0" from="10" to="30000" default="0" size="2">(Watt)  </Setting>
+<Title>Overload safety switch</Title>
+<Description>This  function  allows  to  turn  off  the  controlled  device  in  case  of  ex-ceeding the defined power. Controlled device will be turned off even if “Always On” function is active (parameter 1).Controlled  device  can  be  turned  back  on  via  B-button  or  sending  a  control frame. By default this function is inactive.
+0 - function inactive
+10-30000  (1.0-3000.0W,  step  0.1W)  -  power    threshold
+</Description>
+</Parameter>
+<Parameter name="10" group="10" access="rw" type="range">
+<Setting from="1" to="100" default="80" size="1" >%</Setting>
+<Title>High priority power report</Title>
+<Description>This  parameter  determines  the  minimum  percentage  change  in  ac-tive power that will result in sending power report to the main con-troller with the highest priority in the Z-Wave network. By  default,  the  Wall  Plug  immediately  sends  the  power  report  if  the  power load changes by 80%
+1-99 - power change in percent
+100 - reports are disabled</Description>
+</Parameter>
+<Parameter name="11" group="10" access="rw" type="range">
+<Setting from="1" to="100" default="15" size="1" >%</Setting>
+<Title>Standard power repor</Title>
+<Description>This parameter determines the minimum percentage change in active power that will result in sending power report to the main controllerCompared to parameter 10, the maximum number of reports sent is reduced (parameter 12) to 5 in a specified time interval. In addition, the reports are not sent in mode, which may result in overloading the Z-Wave network. By default changes in power load may be reported up to 5 times per 30 seconds, when power load changes by 15%. 
+1-99 - power change in percent
+100 - reports are disabled</Description>
+</Parameter>
+<Parameter name="12" group="10" access="rw" type="time">
+<Setting from="5" to="600" default="30" size="2" >in seconds</Setting>
+<Title>Power reporting interval</Title>
+<Description>This parameter defines the time interval of sending at most 5 stand-ard  power  reports  when  the  power  changes  by  the  value  set  in  pa-rameter 11. The higher the value of parameter 12, the fewer reports the device will send.
+5-600 (in seconds)</Description>
+</Parameter>
+<Parameter name="13" group="10" access="rw" type="range">
+ <Setting from="0" to="500" default="10" size="2" />
+ <Title>Energy reporting threshold</Title>
+ <Description>This  parameter  specifies  the  minimum  change  in  energy  consump-tion (in relation to the previously reported), that will result in sending a new report.
+0 - energy reports inactive
+1-500 (0.01-5kWh, step 0.01kWh) - threshold</Description>
+</Parameter>
+<Parameter name="14" group="10" access="rw" type="time+">
+<Setting from="5" to="32400" values="0" default="0" size="2" >in seconds</Setting>
+<Title> Power and energy periodic report</Title>
+<Description>This  parameter  defines  time  period  between  independent  reports  sent when changes in power load have not been recorded or if chang-es are insignificant. By default reports are sent every hour.
+0 - periodic reports inactive
+5-32400 (in seconds)</Description>
+</Parameter>
+<Parameter name="15" group="10" access="rw" type="radio">
+ <Setting values="0,1" default="0" size="1" />
+ <Title>Measuring energy consumed by the Wall Plug itself</Title>
+ <Description>This parameter determines whether power metering should include the  amount of power consumed by the Wall Plug itself. Results are being added to the value of power consumed by controlled device
+0 - function inactive
+1 - function activated </Description>
+</Parameter>
+
+<Parameter name="20" group="20" access="rw" type="radio">
+<Setting values="0,1" default="0" size="1"/>
+<Title>Control of „On/Off (Button)” association group (2) device</Title>
+<Description>Controlling  devices  with  the  B-Button.  This  parameter  is  inactive  in  “Always On” mode (parameter 1).Control as the Wall Plug:• switching the Wall Plug on – switch the devices on (parameter 24)• switching the Wall Plug off – switch the devices off (parameter 24)Control opposite to the Wall Plug:• switching the Wall Plug on – switch the devices off• switching the Wall Plug off – switch the devices on
+0 - control as the Wall Plug
+1 - control opposite to the Wall Plug</Description>
+</Parameter>
+<Parameter name="21" group="20" access="rw" type="text">
+<Setting from="0" to="24900" default="300" size="2" />
+<Title>DOWN value - „On/Off (Power)” association group (3)</Title>
+<Description>Lower  power  threshold,  used  in  parameter  23.  DOWN  value  cannot  be higher than a value specified in  parameter 22.
+0-24900 (0.0-2490.0W, step 0.1W)</Description>
+</Parameter>
+<Parameter name="22" group="20" access="rw" type="text">
+<Setting from="100" to="25000" default="500" size="2" />
+<Title>UP value - „On/Off (Power)” association group (3) </Title>
+<Description>upper power threshold, used in parameter 23. UP value cannot be lower than a value specified in parameter 21.
+100-25000 (10.0-2500.0W, step 0.1W</Description>
+</Parameter>
+<Parameter name="23" group="20" access="rw" type="radio">
+<Setting values ="1,2,3,4,5,6" default="1" size="1" />
+<Title> The response after exceeding defined power values</Title>
+<Description>This parameter defines the way that 3rd association group devices are controlled. Depends on the actual measured power (as parameters 21 and 22 settings).
+1 - turn  the associated devices On, once the power drops below DOWN value (parameter 21)
+2 - turn  the associated devices OFF, once the power drops below DOWN value (parameter 21)
+3 - turn the associated devices On, once the power rises above UP value (parameter 22)
+4 - turn the associated devices OFF, once the power rises above UP value (parameter 22) 
+5 - combination of 1 and 4. Turn the associated devices On, once the power drops below DOWN value (parameter 21). Turn the associated devices OFF, once the power rises above uP value (parameter 22).
+6 - combination of 2 and 3. Turn the associated devices OFF, once the power drops below DOWN value (parameter 21). Turn the associated devices On, once the power rises above UP value (parameter 22)</Description>
+</Parameter>
+<Parameter name="24" group="20" access="rw" type="range+">
+<Setting from="0" to="99" values ="255" default="255" size="2" />
+<Title>Command frames sent in 2nd and 3rd association groups (S1 associations)</Title>
+<Description>The value of BASIC SET command frame sent to the devices associated in „On/Off ” association groups (2, 3).
+„On/Off (Button)” association group - in accordance with parameter 20.
+„On/Off (Power)” association group - in accordance with parameter 2
+Note:
+0 - turning off associated devices
+1-99 - forcing level of associated devices
+255 - setting associated devices to the last remembered state or turning them on</Description>
+</Parameter>
+
+<Parameter name="30" group="30" access="rw" type="binarycheck">
+<Setting values="1,2,4,8,16,32" default="63" size="1" />
+<Title> Active alarms</Title>
+<Description>Define Z-Wave network alarms to which the Wall Plug will respond
+1 - general alarm
+2 - smoke alarm
+4 - CO alarm
+8 - CO2 alarm
+16 - high temperature alarm
+32 - flood alarm</Description>
+</Parameter>
+
+<Parameter name="31" group="30" access="rw" type="range+">
+<Setting values ="0,1,2" from="5" to="50" default="0" size="1" />
+<Title> Response to alarm frames </Title>
+<Description>This parameter defines how the Wall Plug will respond to alarms (device’s status change). In case of values 1 or 2 the Wall Plug is operating normally and LED ring signals an alarm through time defined in parameter 32 or until the alarm is cancelled. In case of values 5 to 50 the Wall Plug does not report status change, power changes, ignores BASIC SET command frames. After time defined in parameter 32 or after the alarm cancellation, connected device is set to the previous state. 
+0 - no reaction, 
+1 - turn connected device on 
+2 - turn connected device off 
+5-50 (0.5-5.0s, step 0.1s) - cyclically change device state with set period
+</Description>
+</Parameter>
+<Parameter name="32" group="30" access="rw" type="time">
+<Setting from="1" to="32400" default="600" size="2" >(in Seconds)</Setting>
+<Title> Alarm state duration </Title>
+<Description>This parameter specifies the duration of alarm state. If a device sending an alarm frame through the Z-Wave network sets alarm duration as well, this settings are ignored.</Description>
+</Parameter>
+
+<Parameter name="40" group="40" access="rw" type="text">
+<Setting from="1000" to="30000" default="25000" size="2" >(100.0-3000.0W, step 0.1W) </Setting>
+<Title>Power load for violet colour </Title>
+<Description>This parameter determines maximum active power value, which when exceeded, causes the LED ring flash violet.  Function is active only when parameter 41 is set to 1 or 2. 
+1000-30000 (100.0-3000.0W, step 0.1W) 
+</Description>
+</Parameter>
+<Parameter name="41" group="40" access="rw" type="radio">
+<Setting values ="0,1,2,3,4,5,6,7,8,9" default="1" size="1" />
+<Title>LED ring colour when controlled device is on </Title>
+<Description>When set to 1 or 2, LED ring colour will change depending on active power and parameter 40. Other colours are set permanently and do not depend on power consumption.
+
+0 - illumination turned off completely 
+1 - colour changes continuously depending on active power 
+2 - colour changes in steps depending on active power 
+3 - white, 
+4 - red, 
+5 - green, 
+6 - blue, 
+7 - yellow 
+8 - cyan, 
+9 - magenta</Description>
+</Parameter>
+
+<Parameter name="42" group="40" access="rw" type="radio">
+<Setting values ="0,1,2,3,4,5,6,7,8,9" default="0" size="1" />
+<Title>LED ring colour when controlled device is off </Title>
+<Description>This parameter defines the illumination colour after turning off. 
+
+0 - illumination turned off completely 
+1 - LED ring is illuminated with a colour corresponding to the last measured power, before the controlled device was turned off
+3 - white, 
+4 - red, 
+5 - green, 
+6 - blue, 
+7 - yellow 
+8 - cyan, 
+9 - magenta</Description>
+</Parameter>
+
+<Parameter name="43" group="40" access="rw" type="radio">
+<Setting values ="0,1,2,3,4,5,6,7,8,9" default="2" size="1" />
+<Title>LED ring colour at the Z-Wave network alarm detection </Title>
+<Description>This parameter defines the illumination colour in case of Z-Wave alarm. 
+
+0 - illumination turned off completely 
+1 - no change in colour. LED ring colour is determined by settings  of parameters 41 or 42 
+2 - LED ring flashes red/blue/white
+3 - white, 
+4 - red, 
+5 - green, 
+6 - blue, 
+7 - yellow 
+8 - cyan, 
+9 - magenta</Description>
+</Parameter>
+<Parameter name="50" group="50" access="rw" type="radio">
+<Setting values ="0,1,2,3" default="3" size="1" />
+<Title>Associations in Z-Wave network security mode</Title>
+<Description>This parameter defines how commands are sent in specified association groups: as secure or non-secure. Parameter is active only in Z-Wave network security mode. This parameter does not apply to 1st „Lifeline” group.
+0 - none of the groups sent as secure 
+1 - 2nd group sent as secure 
+2 - 3rd group sent as secure 
+3 - 2nd and 3rd group sent as secure
+</Description>
+</Parameter>
+
+  </Parameters>
+</Device>
+
+
+</xml>

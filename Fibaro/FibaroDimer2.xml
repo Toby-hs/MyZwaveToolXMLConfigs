@@ -1,0 +1,384 @@
+<xml version="1.0" encoding="UTF-8"> 
+<Device name="Fibaro Dimmer2" url="https://manuals.fibaro.com/content/manuals/us/FGD-212/FGD-212-US-T-v1.1.pdf" Manufacturer='0x10F' ProductType='0x102' ProductID='0x1000' version="3.5">
+  <Groups>
+    <Group ID='0' default='open'>Dimmer 2 behavior - Basic functionalities</Group>
+    <Group ID='20' default='closed'>Dimmer 2 operation - Switches</Group>
+    <Group ID='30' default='closed'>Dimmer 2 operation - Advanced functionality</Group>
+    <Group ID='40' default='closed'>Dimmer 2 operation - Alarms</Group>
+    <Group ID='50' default='closed'>Dimmer 2 operation - Active power and energy reports</Group>
+ </Groups>
+
+<Parameters>
+<Parameter name="1" group="0" access="rw" type="range">
+<Setting from="1" to="98" default="1" size="1" />
+<Title>Minimum brightness level</Title>
+<Description> percentage level of brightness (parameter is set automatically during the calibration process).
+The parameter can be changed manually after the calibration.</Description>
+</Parameter>
+<Parameter name="2" group="0" access="rw" type="range">
+<Setting from="2" to="99" default="99" size="1" />
+<Title>Maximum brightness level</Title>
+<Description> percentage level of brightness (parameter is set automatically during the calibration process). 
+The parameter can be changed manually after the calibration.</Description>
+</Parameter>
+<Parameter name="3" group="0" access="rw" type="range">
+<Setting from="1" to="99" default="99" size="1" />
+<Title>Incandescence level of dimmable compact fluorescent lamps</Title>
+<Description>Virtual value set as a percentage level between parameters MIN (1%) and MAX. (99%). The Dimmer 2 will set to this value after first switch on. It is required for warming up and switching dimmable compact fluorescent lamps and certain types of light sources.</Description>
+</Parameter>
+<Parameter name="4" group="0" access="rw" type="range">
+<Setting from="0" to="255" default="0" size="2" />
+<Title>Incandescence time of dimmable compact fluorescent lamps</Title>
+<Description>This parameter determines the time required for switching compact fluorescent lamps and certain types of light sources. Setting this parameter to 0 will disable the incandescence functionality.</Description>
+</Parameter>
+<Parameter name="5" group="0" access="rw" type="range">
+<Setting from="1" to="99" default="1" size="1" />
+<Title>Automatic control - dimming step size</Title>
+<Description>This parameter defines the percentage value of dimming step during the automatic control.</Description>
+</Parameter>
+<Parameter name="6" group="0" access="rw" type="range">
+<Setting from="0" to="255" default="1" size="2" >(0-2.55s, in 10ms steps)</Setting>
+<Title>Automatic control - time of a dimming step</Title>
+<Description>This parameter defines the time of single dimming step set in parameter 5 during the automatic control.</Description>
+</Parameter>
+<Parameter name="7" group="0" access="rw" type="range">
+<Setting from="1" to="99" default="1" size="1">dimming step percentage value</Setting>
+<Title>Manual control - dimming step size</Title>
+<Description>This parameter defines the percentage value of dimming step during the manual control.</Description>
+</Parameter>
+<Parameter name="8" group="0" access="rw" type="range">
+<Setting from="0" to="255" default="5" size="2">(0-2.55s, in 10ms steps)</Setting>
+<Title>Manual control - time of a dimming step</Title>
+<Description>This parameter defines the time of single dimming step set in parameter 7 during the manual control.</Description>
+</Parameter>
+<Parameter name="9" group="0" access="rw" type="radio">
+<Setting  values="0,1" default="1" size="1" />
+<Title>State of the device after a power failure</Title>
+<Description>The Dimmer 2 will return to the last state before power failure.
+0 - the Dimmer 2 does not save the state before a power failure, it returns to „off” position
+1 - the Dimmer 2 restores its state before power failure</Description>
+</Parameter>
+<Parameter name="10" group="0" access="rw" type="time">
+<Setting from="0" to="32767" default="0" size="2" >in seconds</Setting>
+<Title>Timer functionality (auto - off)</Title>
+<Description>This parameter allows to automatically switch off the device after specified time from switching on the light source. It may be useful when the Dimmer 2 is installed in the stairway.
+0 - Function disabled
+1-32767 - time to turn off measured in seconds (1s-9.1h)
+</Description>
+</Parameter>
+<Parameter name="11" group="0" access="rw" type="radio">
+<Setting values="0,1,2,255" default="255" size="2" />
+<Title>ALL ON/ALL OFF function</Title>
+<Description>Parameter allows for activation/deactivation of Z-Wave commands enabling/disabling all devices located in direct range of the main controller.
+0 - ALL ON not active, ALL OFF not active
+1 - ALL ON not active, ALL OFF active
+2 - ALL ON active, ALL OFF not active
+255 - ALL ON active, ALL OFF active</Description>
+</Parameter>
+<Parameter name="13" group="0" access="rw" type="radio">
+ <Setting values="0,1,2" default="0" size="1" />
+ <Title>Force auto-calibration </Title>
+ <Description>Changing value of this parameter will force the calibration process. During the calibration parameter is set to 1 or 2 and switched to 0 upon completion.
+   0 - readout
+   1 - force auto-calibration of the load without FIBARO Bypass 2
+   2 - force auto-calibration of the load with FIBARO Bypass 2
+ </Description>
+</Parameter>
+<Parameter name="14" group="0" access="r" type="radio">
+ <Setting values="0,1" default="0" size="1" />
+ <Title>Auto-calibration status</Title>
+ <Description>This  parameter  determines  operating  mode  of  the  Dimmer  2  (auto-matic/manual settings).  
+0 - calibration  procedure  not  performed  or  Dim-mer 2 operates on manual settings  
+1 - Dimmer 2 operates on auto-calibration settings 
+ </Description>
+</Parameter>
+<Parameter name="15" group="0" access="rw" type="range">
+ <Setting from="0" to="99" default="30" size="1" />
+ <Title>Burnt out bulb detection</Title>
+ <Description>Function based on the sudden power variation of a specific value, in-terpreted as a LOAD ERROR. 
+0 - function disabled
+1-99 - percentage value of power variation, compared to standard power consumption, measured during the calibration procedure (to be interpreted as load error/burnt out bulb)
+ </Description>
+</Parameter>
+<Parameter name="16" group="0" access="rw" type="range">
+<Setting from="0" to="255" default="5" size="2">(seconds)</Setting>
+<Title>Time delay of a burnt out bulb (parameter 15) or overload (parameter 39) detection</Title>
+<Description>Time of delay (in seconds) for power variation detection, interpreted as a LOAD ERROR or OVERLOAD detection (too much power connect-ed to the Dimmer 2).
+0 - detection of a burnt out bulb disabled 
+1-255 - delay time in seconds .</Description>
+</Parameter>
+<Parameter name="19" group="0" access="rw" type="range">
+<Setting from="0" to="99" default="5" size="1">(%)</Setting>
+<Title>Forced switch on brightness level</Title>
+<Description>If the parameter is active, switching on the Dimmer 2 (S1 single click) will always set this brightness level.
+0 - function disabled
+1-99 - percentage level of brightness</Description>
+</Parameter>
+<Parameter name="20" group="20" access="rw" type="radio">
+<Setting values="0,1,2" default="0" size="1"/>
+<Title>Switch type</Title>
+<Description>Choose between momentary, toggle and roller blind switch.
+0 - momentary switch 
+1 - toggle switch 
+2 - roller blind switch - two switches operate the Dimmer 2 (S1 to brighten, S2 to dim)  </Description>
+</Parameter>
+<Parameter name="21" group="20" access="rw" type="radio">
+<Setting values ="0,1" default="0" size="1" />
+<Title>The value sent to associated devices on single click</Title>
+<Description>This parameter defines the value sent to devices associated with Dim-mer 2 after its enabling.
+0 - 0xFF value is sent, which will set associated devices to their last saved state
+1 -current Dimmer 2 state is sent, which will synchronize brightness level of associated devices (other dimmers for example)</Description>
+</Parameter>
+<Parameter name="22" group="20" access="rw" type="radio">
+<Setting values ="0,1" default="0" size="1" />
+<Title>Assign toggle switch status to the device status </Title>
+<Description>By default each change of toggle switch position results in action of Dimmer 2 (switch on/off ) regardless the physical connection of conntacts. 
+0 - device changes status on switch status change
+1 - device status is synchronized with switch status </Description>
+</Parameter>
+<Parameter name="23" group="20" access="rw" type="radio">
+<Setting values ="0,1" default="1" size="1" />
+<Title>Double click option - set the brightness level to MAX</Title>
+<Description>0 - double click disabled 
+1 - double click enabled</Description>
+</Parameter>
+<Parameter name="24" group="20" access="rw" type="binarycheck">
+<Setting values ="0,1,2,4,8,16" default="0" size="1" />
+<Title>Command frames sent in 2nd and 3rd association groups (S1 associations)</Title>
+<Description>Parameter determines, which actions will not result in sending frames to association groups. 
+0 - all actions send to association groups
+1 - do not send when switching On (single click)
+2 - do not send when switching OFF (single click)
+4 - do not send when changing dimming level (holding and releasing)
+8 - do not send on double click
+16 - send 0xFF value on double click</Description>
+</Parameter>
+<Parameter name="25" group="20" access="rw" type="binarycheck">
+<Setting values ="0,1,2,4,8,16" default="0" size="1" />
+<Title>Command frames sent in 4th and 5th association groups (S2 associations)</Title>
+<Description>Parameter determines, which actions will not result in sending frames to association groups. 
+0 - all actions send to association groups
+1 - do not send when switching On (single click)
+2 - do not send when switching OFF (single click)
+4 - do not send when changing dimming level (holding and releasing)
+8 - do not send on double click
+16 - send 0xFF value on double click</Description>
+</Parameter>
+<Parameter name="26" group="20" access="rw" type="radio">
+<Setting values ="0,1" default="0" size="1" />
+<Title>The function of 3-way switch</Title>
+<Description>Switch no. 2 controls the Dimmer 2 additionally (in 3-way switch mode). Function disabled for parameter 20 set to 2 (roller blind switch). 
+0 - 3-way switch function for S2 disabled
+1 - 3-way switch function for S2 enabled</Description>
+</Parameter>
+<Parameter name="27" group="20" access="rw" type="binarycheck">
+<Setting values ="0,1,2,4,8" default="15" size="1" />
+<Title>Associations in Z-Wave network security mode </Title>
+<Description>This  parameter  defines  how  commands  are  sent  in  specified  asso-ciation  groups:  as  secure  or  non-secure.  Parameter  is  active  only  in  Z-Wave network security mode. It does not apply to 1st Lifeline group.
+0 - all groups (II-V) sent as non-secure 
+1 - 2nd group sent as secure 
+2 - 3rd group sent as secure 
+4 - 4th group sent as secure 
+8 - 5th group sent as secure 
+15 - all groups (II-V) sent as secure </Description>
+</Parameter>
+<Parameter name="28" group="20" access="rw" type="radio">
+<Setting values ="0,1" default="0" size="1" />
+<Title>Scene activation functionality </Title>
+<Description>SCENE ID depends on the switch type configurations.
+0 - functionality deactivated 
+1 - functionality activated </Description>
+</Parameter>
+<Parameter name="29" group="20" access="rw" type="radio">
+<Setting values ="0,1" default="0" size="1" />
+<Title>Switch functionality of S1 and S2 </Title>
+<Description>This parameter allows for switching the role of keys connected to S1 and S2 without changes in connection.
+0 - standard mode 
+1 - S1 operates as S2, S2 operates as S1</Description>
+</Parameter>
+<Parameter name="30" group="30" access="rw" type="radio">
+<Setting values ="0,1,2" default="2" size="1" />
+<Title>Load control mode</Title>
+<Description>This parameter allows to set the desired load control mode. The de-vice automatically adjusts correct control mode, but the installer may force its change using this parameter.Forced auto-calibration will set this parameter’s value to 2.
+0 - forced leading edge control 
+1 - forced trailing edge control 
+2 - control mode selected automatically (based on auto-calibration)</Description>
+</Parameter>
+<Parameter name="31" group="30" access="r" type="radio">
+<Setting values ="0,1" default="" size="1" />
+<Title> Load   control   mode   recognized   during   auto-calibration</Title>
+<Description>0 - leading edge 
+1 - trailing edge</Description>
+</Parameter>
+<Parameter name="32" group="30" access="rw" type="radio">
+<Setting values ="0,1,2" default="2" size="1" />
+<Title>On/Off mode </Title>
+<Description>This mode is necessary while connecting non-dimmable light sources.  Setting  this  parameter  to  1  automatically  ignores  brightening/dimming time settings. Forced auto-calibration will set this parame-ter’s value to 2.  
+0 - on/off mode disabled (dimming is possible) 
+1 - on/off mode enabled (dimming is not pos-sible) 
+2 - mode selected automatically</Description>
+</Parameter>
+<Parameter name="33" group="30" access="r" type="radio">
+<Setting values ="0,1" default="" size="1" />
+<Title>Dimmability of the load (read only)</Title>
+<Description>This parameter contains an information about possibility of dimming the load detected during calibration procedure. 
+0 - Load recognized as dimmable 
+1 - Load recognized as non-dimmable</Description>
+</Parameter>
+<Parameter name="34" group="30" access="rw" type="radio">
+<Setting values ="0,1,2" default="1" size="1" />
+<Title>Soft-Start functionality</Title>
+<Description>Time required to warm up the filament of halogen bulb. 
+0 - no soft-start 
+1 - short soft-start (0.1s) 
+2 - long soft-start (0.5s)</Description>
+</Parameter>
+<Parameter name="35" group="30" access="rw" type="radio">
+<Setting values ="0,1,2,3,4" default="1" size="1" />
+<Title>Auto-calibration after power on</Title>
+<Description>This parameter determines the trigger of auto-calibration procedure, e.g. power on, load error, etc.
+0 - no auto-calibration of the load after power on 
+1 - Auto-calibration performed after first power on 
+2 - Auto-calibration performed after each power on 
+3 - Auto-calibration performed after first power on  or  after  each  LOAD  ERROR  alarm  (no  load,  load failure, burnt out bulb), if parameter 37 is set to 1 also after alarms: SURGE (Dimmer 2 out-put  overvoltage)  and  OVERCuRREnT  (Dimmer  2 output overcurrent)  
+4 - Auto-calibration performed after each pow-er on or after each LOAD ERROR alarm (no load, load failure, burnt out bulb), if parameter 37 is set to 1 also after alarms: SURGE (Dimmer 2 out-put  overvoltage)  and  OVERCURRENT  (Dimmer  2 output overcurrent)</Description>
+</Parameter>
+
+<Parameter name="37" group="30" access="rw" type="radio">
+<Setting values ="0,1" default="1" size="1" />
+<Title>Behaviour of the Dimmer 2 after OVERCURRENT or SURGE</Title>
+<Description>Occuring  of  errors  related  to  surge  or  overcurrent  results  in  turning  off the output to prevent possible malfunction. By default the device performs  three  attempts  to  turn  on  the  load  (useful  in  case  of  momentary, short failures of the power supply).
+0 - device permanently disabled until re-enabling by command or external switch 
+1 - three attempts to turn on the load </Description>
+</Parameter>
+<Parameter name="39" group="30" access="rw" type="range">
+<Setting from='0' to='350' default="250" size="1" />
+<Title>Power limit - OVERLOAD</Title>
+<Description>Reaching  the  defined  value  will  result  in  turning  off  the  load.  Addi-tional apparent power limit of 350VA is active by default. Note: Parameter  39  is  relevant   only   when   parameter 58 is set to 0.
+0 - functionality disabled
+1-350 - 1-350W</Description>
+</Parameter>
+<Parameter name="40" group="40" access="rw" type="radio">
+<Setting values ="0,1,2,3" default="3" size="1" />
+<Title>Response to General Purpose Alarm</Title>
+<Description>0 - no reaction 
+1 - Turn on the load 
+2 - Turn off the load 
+3 - Load blinking</Description>
+</Parameter>
+<Parameter name="41" group="40" access="rw" type="radio">
+<Setting values ="0,1,2,3" default="2" size="1" />
+<Title>Response to Water Flooding Alarm</Title>
+<Description>0 - no reaction 
+1 - Turn on the load 
+2 - Turn off the load 
+3 - Load blinking</Description>
+</Parameter>
+<Parameter name="42" group="40" access="rw" type="radio">
+<Setting values ="0,1,2,3" default="3" size="1" />
+<Title>Response to Smoke, CO or CO2 Alarm</Title>
+<Description>0 - no reaction 
+1 - Turn on the load 
+2 - Turn off the load 
+3 - Load blinking</Description>
+</Parameter>
+<Parameter name="43" group="40" access="rw" type="radio">
+<Setting values ="0,1,2,3" default="1" size="1" />
+<Title>Response to Temperature Alarm</Title>
+<Description>0 - no reaction 
+1 - Turn on the load 
+2 - Turn off the load 
+3 - Load blinking</Description>
+</Parameter>
+<Parameter name="44" group="40" access="rw" type="time">
+<Setting from="1" to="32767" default="600" size="2" >in seconds</Setting>
+<Title>Time of alarm state </Title>
+<Description>
+1-32767 - time of alarm state measured in seconds (1s-9.1h)
+Note: Alarm state may be cancelled earlier, as a result of pressing the switch or sending the Z-Wave command frame.
+</Description>
+</Parameter>
+<Parameter name="45" group="40" access="rw" type="radio">
+<Setting values ="0,1" default="1" size="1" />
+<Title>OVERLOAD alarm report</Title>
+<Description>Load power consumption too high
+0 - no reaction 
+1 - Send an alarm frame </Description>
+</Parameter>
+<Parameter name="46" group="40" access="rw" type="radio">
+<Setting values ="0,1" default="1" size="1" />
+<Title>LOAD ERROR alarm report</Title>
+<Description>No load, load failure, burnt out bulb
+0 - no reaction 
+1 - Send an alarm frame </Description>
+</Parameter>
+<Parameter name="47" group="40" access="rw" type="radio">
+<Setting values ="0,1" default="1" size="1" />
+<Title>OVERCURRENT alarm report</Title>
+<Description>Short circuit, burnt out bulb causing overcurrent
+0 - no reaction 
+1 - Send an alarm frame </Description>
+</Parameter>
+<Parameter name="48" group="40" access="rw" type="radio">
+<Setting values ="0,1" default="1" size="1" />
+<Title>SURGE alarm report</Title>
+<Description>Dimmer 2 output overvoltage
+0 - no reaction 
+1 - Send an alarm frame </Description>
+</Parameter>
+<Parameter name="49" group="40" access="rw" type="radio">
+<Setting values ="0,1" default="1" size="1" />
+<Title>OVERHEAT and VOLTAGE DROP alarm report </Title>
+<Description>OVERHEAT (critical temperature) and VOLTAGE DROP (low volt-age) 
+0 - no reaction 
+1 - Send an alarm frame </Description>
+</Parameter>
+<Parameter name="50" group="50" access="rw" type="range">
+<Setting from="0" to="100" default="10" size="1" />
+<Title>Active power reports </Title>
+<Description>The  parameter  defines  the  power  level  change  that  will  result  in  a  new  power report being sent. The value is a percentage of the previous report. 
+0 - power reports disabled
+1-100 (1-100%) - power report threshold </Description>
+</Parameter>
+<Parameter name="52" group="50" access="rw" type="time">
+<Setting from="0" to="32767" default="3600" size="2" >in seconds</Setting>
+<Title>Periodic active power and energy reports</Title>
+<Description>Parameter  52  defines  a  time  period  between  consecutive  reports.  Timer is reset and counted from zero after each report. 
+0 - periodic reports disabled
+1-32767 (1-32767 seconds)
+</Description>
+</Parameter>
+<Parameter name="53" group="50" access="rw" type="range">
+<Setting from="0" to="255" default="10" size="2" >1/10 kWh</Setting>
+<Title>Energy reports</Title>
+<Description>Energy level change which will result in sending a new energy report. 
+0 - energy reports disabled
+1-255 (0.01-2.55 kWh) - report triggering threshold</Description>
+</Parameter>
+<Parameter name="54" group="40" access="rw" type="radio">
+<Setting values ="0,1" default="0" size="1" />
+<Title>Self-measurement</Title>
+<Description>The  Dimmer  2  may  include  active  power  and  energy  consumed  by  itself in reports sent to the main controller. 
+0 - Self-measurement inactive 
+1 - Self-measurement active </Description>
+</Parameter>
+<Parameter name="58" group="50" access="rw" type="radio">
+<Setting values ="0,1,2" default="0" size="1" />
+<Title>Method of calculating the active power</Title>
+<Description>This parameter defines how to calculate active power. It is useful in a case of 2-wire connection with light sources other than resistive.  NOTE:Parameter 58 is set to 0 after forced auto-calibration.
+0 - measurement based on the standard algorithm
+1 - approximation based on the calibration data
+2 - approximation based on the control angle</Description>
+</Parameter>
+<Parameter name="59" group="50" access="rw" type="range">
+<Setting from="0" to="500" default="0" size="2" >W</Setting>
+<Title>Approximated power at the maximum brightness level</Title>
+<Description>This parameter determines the approximate value of the power that will be reported by the device at its maximum brightness level.
+NOTE: Parameter 59 works only when parameter 58 has a value other than 0.
+0-500 (0-500W) - power consumed by the load at the maximum brightness level.</Description>
+</Parameter>
+  </Parameters>
+</Device>
+
+
+</xml>

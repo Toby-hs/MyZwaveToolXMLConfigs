@@ -1,0 +1,245 @@
+<xml version="1.0" encoding="UTF-8"> 
+<Device name="Fibaro Dimmer1"  url="http://manuals.fibaro.com/content/manuals/en/FGD-211/FGD-211-EN-A-v1.03.pdf" Manufacturer='0x10F' ProductType='0x100' ProductID='0x100A' version="2.2">
+  <Groups>
+    <Group ID='0' default='open'>Dimmer 2 behavior - Basic functionalities</Group>
+    <Group ID='20' default='closed'>Dimmer 2 operation - Advanced functionality</Group>
+    <Group ID='30' default='closed'>Dimmer 2 operation - Alarms</Group>
+    <Group ID='40' default='closed'>Dimmer 2 operation - Scenes</Group>
+ </Groups>
+
+<Parameters>
+<Parameter name="1" group="0" access="rw" type="radio">
+<Setting values="0,1,2,255" default="255" size="1" />
+<Title> Activate / deactivate functions ALL ON / ALL OFF</Title>
+<Description> 255 - ALL ON active, ALL OFF active.
+0 - ALL ON is not active ALL OFF is not active
+1 - ALL ON is not active ALL OFF active
+2 - ALL ON active ALL OFF is not active</Description>
+</Parameter>
+
+<Parameter name="6" group="0" access="rw" type="radio">
+<Setting values="0,1,2" default="0" size="1" />
+<Title>Sending commands to control devices assigned to 1-st association group (key no. 1)</Title>
+<Description>Available configuration parameters:
+0 - commands are sent when device is turned on and off
+1 - commands are sent when device is turned off. Enabling device does not send control commands. Double-clicking key sends 'turn on' command, dimmers memorize the last saved state (e.g. 50% brightness).
+2 - commands are sent when device is turned off. Enabling device does not send control commands. Double-clicking key sends 'turn on' command and dimmers are set to 100% brightness.
+
+NOTE: Parameter 15 value must be set to 1 to work properly. This activates the double-click functionality - dimmer/roller shutter control.</Description>
+</Parameter>
+
+<Parameter name="7" group="0" access="rw" type="radio">
+<Setting values="0,1" default="1" size="1"/>
+<Title>Checking the device status before sending a control frame from the key no. 2</Title>
+<Description>Info: Key no. 2 is not represented by any physical device expect of devices on association list. This functionality prevents of lack of reaction on pressing key no. 2 through polling devices from list one by one and checking thier actual states.
+It is not possible to check the device status before sending a control frame from the key no. 2 if roller blind switch is chosen in parameter 14 (value 2)
+If devices state is checked before sending asociation then parameter 19 should be set to value 0. </Description>
+</Parameter>
+
+<Parameter name="8" group="0" access="rw" type="range">
+<Setting from="1" to="99" default="1" size="1" />
+<Title>The percentage of a dimming step at automatic control</Title>
+<Description>Options for changing parameter 1-99</Description>
+</Parameter>
+
+<Parameter name="9" group="0" access="rw" type="range">
+<Setting  from="1" to="255" default="5" size="1" />
+<Title>Time of manually moving the Dimmer between the extreme dimming values.</Title>
+<Description>Options for changing parameter 1-255 (10ms – 2.5s)</Description>
+</Parameter>
+
+<Parameter name="10" group="0" access="rw" type="range">
+<Setting from="0" to="255" default="1" size="1" >in milli seconds</Setting>
+<Title>Time of Automatic moving the Dimmer between the extreme dimming values</Title>
+<Description>Options for changing parameter 0-255 (0ms – 2.5s)
+0 - this value disables the smooth change in light intensity
+NOTE value 0 is required for inductive and capacitive devices unsuitable for dimming, (e.g. fluorescent lamps , motors etc.)
+</Description>
+</Parameter>
+
+<Parameter name="11" group="0" access="rw" type="range">
+<Setting from="1" to="99" default="1" size="1" />
+<Title>The percentage of a dimming step at manual control. </Title>
+<Description>Options for changing parameter 1-99</Description>
+</Parameter>
+
+<Parameter name="12" group="0" access="rw" type="range">
+<Setting from="2" to="99" default="99" size="1" />
+<Title>Maximum Dimmer level control. </Title>
+<Description>Options for changing parameter 2-99</Description>
+</Parameter>
+
+<Parameter name="13" group="0" access="rw" type="range">
+<Setting from="1" to="98" default="2" size="1" />
+ <Title> Minimum Dimmer level control </Title>
+ <Description>NOTE: The maximum level may not be lower than the minimum level.
+Recommended values of parameters 12 and 13 (max and min level) for controlling the devices are as follows:
+• AC motors [min 60%, max 99%]
+• fluorescent lamps, fluorescent tubes, LED [min 98%, max 99%] [parameter 10 set to 0]
+ </Description>
+</Parameter>
+
+<Parameter name="14" group="0" access="r" type="radio">
+ <Setting values="0,1,2" default="0" size="1" />
+ <Title>Switch type. Choose between momentary switch and toggle switch. </Title>
+ <Description>Available setings:
+0 – momentary switch
+1 – toggle switch
+2 - Roller blind switch (UP / DOWN) - two switch keys operate the Dimmer </Description>
+</Parameter>
+
+<Parameter name="15" group="0" access="rw" type="radio">
+ <Setting values="0,1" default="1" size="1" />
+ <Title> Double click option (set lightning at 100%). </Title>
+ <Description>Available configuration parameters:
+0 Double click disabled
+1 Double click enabled
+ </Description>
+</Parameter>
+
+<Parameter name="16" group="0" access="rw" type="radio">
+ <Setting values="0,1" default="1" size="1" />
+<Title>Saving the state of the device after a power failure</Title>
+<Description> The Dimmer will return to the last position before power failure. 
+Options for changing parameter:
+0 - the Dimmer does not save the state after a power failure, it returns to "off" position
+1 - the Dimmer saves its state before power failure
+</Description>
+</Parameter>
+<Parameter name="17" group="0" access="rw" type="radio">
+ <Setting values="0,1" default="0" size="1" />
+<Title> The function of 3 - way switch, provides the option to double key no. 1. </Title>
+<Description> The Dimmer may control two toggle push-buttons or an infinite number of momentary push-buttons.
+
+Options for changing parameter 0-1
+0 - the function of 3-way switch is disabled
+1 - the function of 3-way switch is enabled
+</Description>
+</Parameter>
+<Parameter name="18" group="0" access="rw" type="radio">
+ <Setting values="0,1" default="0" size="1" />
+<Title>Saving the state of the device after a power failure</Title>
+<Description> The Dimmer will return to the last position before power failure. 
+Options for changing parameter:
+0 - the Dimmer does not save the state after a power failure, it returns to "off" position
+1 - the Dimmer saves its state before power failure
+</Description>
+</Parameter>
+
+<Parameter name="19" group="0" access="rw" type="radio">
+ <Setting values="0,1" default="0" size="1" />
+<Title>Assigns bistable key status to the device status</Title>
+<Description>Available configuration parameters:
+0 - [On / Off] device changes status on key status change.
+1 - Device status depends on key status: ON when the key is ON,
+OFF when the key is OFF.
+Info: Remote control from Fibaro System Is Still Possible. This
+function is useful When you want display status of external devices,
+e.g. Motion Sensor, in Fibaro System.</Description>
+</Parameter>
+
+<Parameter name="20" group="20" access="rw" type="range">
+<Setting from="101" to="170" default="110" size="1"/>
+<Title>The function enabling the change of control impulse length. </Title>
+<Description>Default values: 110 for 50Hz or 101 for 60Hz
+Options for changing parameter 101-170
+This function will enable decreasing the minimum level of the Dimmer by extending the control impulse. By changing the minimum level, the user may completely dim LED bulbs. Not all LED bulbs available on the market have the dimming option. '
+WARNING!
+Wrong setting of the function may cause incorrect operation of the Dimmer.
+</Description>
+</Parameter>
+
+
+<Parameter name="30" group="30" access="rw" type="radio">
+<Setting values ="0,1,2,3" default="3" size="1" />
+<Title>Alarm of any type</Title>
+<Description>Alarm of any type (general alarm, water
+flooding alarm, smoke alarm: CO, CO2, temperature alarm)
+0 - DEACTIVATION - the device does not respond to alarm data frames
+1 - ALARM DIMMER ON - the device turns on after detecting an alarm
+2 - ALARM DIMMER OFF - the device turns off after detecting an alarm
+3 - ALARM FLASHING the device periodically changes its status to the opposite, when it detects an alarm within 10 min. </Description>
+</Parameter>
+
+<Parameter name="39" group="30" access="rw" type="text">
+<Setting from='1' to='65535' default="600" size="3" />
+<Title>Active flashing alarm time.</Title>
+<Description>Available configuration parameters: [1-65535][ms]</Description>
+</Parameter>
+
+<Parameter name="40" group="40" access="r" type="range">
+<Setting from="1" to="99" default="1" size="1" />
+<Title> Updating the dimming level without the input from the switch.</Title>
+<Description>Available settings: from 1 to 99
+Parameter’s value changes depending on the dimming level</Description>
+</Parameter>
+
+<Parameter name="41" group="40" access="rw" type="radio">
+<Setting values ="0,1" default="0" size="1" />
+<Title> Scene activation functionality</Title>
+<Description>Possible parameter settings:
+0 – functionality deactivated
+1 – functionality activated
+
+The device offers the possibility of sending commands compatible with Command class scene activation. Information is sent to devices assigned to association group no. 3. Controllers such as Home Center 2 are able to interpret such commands and based on these commands they activate scenes, to which specific scene IDs have been assigned. The user may expand the functionality of the button connected to inputs S1 and S2 by distinguishing the actions of keys connected to those inputs. For example: double click would activate the scene “goodnight” and triple click would activate the scene “morning”.
+
+Scene ID is determined as follows:
+Momentary switch (parameter 14 set to 0):
+[bold]Input S1:[/bold]
+holding down ID 12 (option inactive in case of roller blind switch) 
+releasing ID 13
+double click ID 14 (depends on parameters 15 value - 1 = double click active)
+triple click ID 15
+one click ID 16
+
+Input S2:
+holding down ID 22 (option inactive in case of roller blind switch)
+releasing ID 23
+double click ID 24 (depends on parameters 15 value - 1 = double click active) option inactive in case of roller blind switch
+triple click ID 25
+one click ID 26
+
+Toggle switch (parameter 14 set to 1):
+Input S1:
+holding down ID 12
+releasing ID 13
+double click ID 14
+(depends on parameters 15 value - 1 = double click active)
+triple click ID 15
+If parameter no. 19 is set to 0: single click ID16 is sent
+If parameter no. 19 is set to 1 following IDs are sent:
+switch from “off” to “on” ID 10
+switch from “on” to “off” ID 11
+
+Input S2:
+holding down ID 22
+releasing ID 23
+double click ID 24
+(depends on parameters 15 value - 1 = double click active)
+triple click ID 25
+If parameter no.19 set to 0 (default), then one click ID 26 is sent
+If parameter no.19 is set to 1 following IDs are sent:
+switch from “off” to “on” ID 20
+switch from “on” to “off” ID 21
+
+Roller blind switch (parameter 14 set to 2):
+Input S1, Turning on the light:
+switch from “off” to “on” ID 10
+double click ID 14 (depends of parameter 15 value 1 - double click
+functionality)
+triple click ID 15
+brighten ID 17
+releasing ID 13
+Input S2, Turning off the light:
+switch from “on” to “off” ID 11
+triple click ID 25
+dim ID 18
+releasing ID 13
+</Description>
+</Parameter>
+
+  </Parameters>
+</Device>
+
+
+</xml>
