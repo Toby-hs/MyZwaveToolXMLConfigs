@@ -1,0 +1,67 @@
+<xml version='1.0' encoding="UTF-8">
+<Device name="Yale YRD-226" version="1.78" url="https://us.yalehome.com/Yale/Yale%20US/Support/Assure%20Locks/Assure%20Lock%20Touchscreen%20(YRD226)/YRD226-MNL-0001%20Rev%20I_WEB_zwpE_zbC.pdf" Manufacturer='0x129' ProductType='0x8002' ProductID='0x600'>
+
+
+<Parameters>
+
+<Parameter name="1" group="0" access="rw" type="range">
+<Setting from="1" to="3" default="1" size="1" />
+<Title>Silent Mode on/off</Title>
+<Description> Level control, 1, 2, 3 default is 1. Levels are 1 and 3 for models with no spoken prompts default is 1 or high.</Description>
+</Parameter>
+
+
+<Parameter name="2" group="0" access="rw" type="radio">
+<Setting  values="0x00,0xFF" default="0X00" size="1" />
+<Title>Auto Relock on/off</Title>
+<Description>0x00 (0) = OFF  -----   0xFF (255) = ON </Description>
+</Parameter>
+
+
+<Parameter name="3" group="0" access="rw" type="range+">
+<Setting from="10" to="180" values="0,255" default="30" size="1" > (optional settings suffix text to display) </Setting>
+<Title>Relock time</Title>
+<Description>10 to 180 seconds default is 30 seconds</Description>
+</Parameter>
+
+<Parameter name="4" group="0" access="rw" type="range+">
+<Setting from="3" to="10" values="0,255" default="5" size="1" > (optional settings suffix text to display) </Setting>
+<Title>Wrong Code Entry Limit</Title>
+<Description>3 to 10 default is 5 times</Description>
+</Parameter>
+
+<Parameter name="5" group="0" access="rw" type="range">
+<Setting from="1" to="3" default="1" size="1" />
+<Title>Language</Title>
+<Description> 1=English, 2=Spanish, 3=French default is 1= English.</Description>
+</Parameter>
+
+<Parameter name="7" group="0" access="rw" type="range+">
+<Setting from="10" to="180" values="0,255" default="60" size="1" > (optional settings suffix text to display) </Setting>
+<Title>Shut down time (after wrong code entries) </Title>
+<Description>10 to 180 seconds default is 30 seconds</Description>
+</Parameter>
+
+<Parameter name="8" group="0" access="rw" type="radio">
+<Setting  values="00,01,02" default="00" size="1" />
+<Title>operating mode</Title>
+<Description>00 = normal mode (this is the default mode) 01 = vacation mode, keypad lockout 02 = privacy mode, no keypad. RF Unlock will work</Description>
+</Parameter>
+
+<Parameter name="11" group="0" access="rw" type="radio">
+<Setting  values="0x00,0xFF" default="0XFF" size="1" />
+<Title>One Touch Locking</Title>
+<Description>0x00 (0) = OFF  -----   0xFF (255) = ON </Description>
+</Parameter>
+
+<Parameter name="12" group="0" access="rw" type="radio">
+<Setting  values="0x00,0xFF" default="0X00" size="1" />
+<Title>Privacy Button</Title>
+<Description>0x00 (0) = OFF  -----   0xFF (255) = ON </Description>
+</Parameter>
+
+
+<!-- end xml-->
+  </Parameters>
+</Device>
+</xml>
